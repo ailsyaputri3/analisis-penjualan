@@ -1,0 +1,49 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Data untuk tabel analisis kasus penjualan
+data = {
+    "Produk": ["Produk A", "Produk B", "Produk C", "Produk D", "Produk E"],
+    "Jumlah Terjual": [1000, 750, 500, 1200, 300],
+    "Pendapatan": [10000000, 7500000, 5000000, 12000000, 3000000],
+    "Biaya": [6000000, 5000000, 3500000, 7200000, 2400000],
+    "Laba Bersih": [4000000, 2500000, 1500000, 4800000, 600000],
+    "Persentase Pertumbuhan": [10, 5, -2, 15, -5],
+    "Catatan/Komentar": [
+        "Penjualan stabil, promosi berhasil",
+        "Memerlukan strategi pemasaran baru",
+        "Penurunan karena pesaing baru",
+        "Penjualan meningkat, produk populer",
+        "Produk kurang diminati"
+    ]
+}
+
+# Membuat DataFrame
+df = pd.DataFrame(data)
+
+# Membuat grafik garis untuk 'Jumlah Terjual'
+plt.figure(figsize=(10, 6))
+plt.plot(df['Produk'], df['Jumlah Terjual'], marker='o', linestyle='-', color='b')
+plt.xlabel('Produk')
+plt.ylabel('Jumlah Terjual')
+plt.title('Diagram Garis Jumlah Terjual per Produk')
+plt.grid(True)
+plt.show()
+
+# Membuat pie chart untuk 'Pendapatan'
+plt.figure(figsize=(8, 8))
+plt.pie(df['Pendapatan'], labels=df['Produk'], autopct='%1.1f%%', colors=plt.cm.Paired(range(len(df['Produk']))))
+plt.title('Pie Chart Pendapatan per Produk')
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.show()
+
+# Membuat scatter plot untuk 'Pendapatan' vs 'Laba Bersih'
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Pendapatan'], df['Laba Bersih'], color='r')
+for i, txt in enumerate(df['Produk']):
+    plt.annotate(txt, (df['Pendapatan'][i], df['Laba Bersih'][i]))
+plt.xlabel('Pendapatan (dalam Rupiah)')
+plt.ylabel('Laba Bersih (dalam Rupiah)')
+plt.title('Scatter Plot Pendapatan vs Laba Bersih')
+plt.grid(True)
+plt.show()
